@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Sean Hanson | Legal Process Automation</title>
+  <meta name="description" content="Sean Hanson's background: military intelligence, healthcare quality engineering, and large-scale process improvement — all leading to legal process automation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 400;
+      color: #1a1a1a;
+      background: #e8f5f2;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* NAV */
+    nav {
+      border-bottom: 1px solid #b2d8d0;
+      padding: 1.25rem 0;
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-cta {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      border: 1px solid #bbb;
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.15s, border-color 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .nav-cta:hover { background: #f0ede6; border-color: #888; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid #b2d8d0;
+    }
+
+    .back-link {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #0d9488;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 1.5rem;
+    }
+
+    .back-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 400;
+      line-height: 1.22;
+      color: #111;
+      margin-bottom: 1rem;
+      max-width: 600px;
+    }
+
+    .page-header .subhead {
+      font-size: 17px;
+      font-weight: 300;
+      color: #555;
+      max-width: 540px;
+      line-height: 1.65;
+    }
+
+    /* PHOTO + INTRO ROW */
+    .intro-row {
+      padding: 3rem 0;
+      border-bottom: 1px solid #b2d8d0;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 200px;
+      height: 240px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .intro-text p {
+      font-size: 15px;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .intro-text p:last-child { margin-bottom: 0; }
+
+    .contact-line {
+      font-size: 13px;
+      color: #888;
+      margin-top: 1.25rem;
+    }
+
+    .contact-line a {
+      color: #0d9488;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* CAREER SECTIONS */
+    .career-section {
+      padding: 3rem 0;
+      border-bottom: 1px solid #b2d8d0;
+    }
+
+    .life-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0d9488;
+      margin-bottom: 0.5rem;
+    }
+
+    .career-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: #111;
+      line-height: 1.3;
+      margin-bottom: 0.35rem;
+    }
+
+    .career-section .org-line {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 1.75rem;
+      font-style: italic;
+    }
+
+    .career-section p {
+      font-size: 15px;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .career-section p:last-child { margin-bottom: 0; }
+
+    .role-block {
+      background: #fff;
+      border: 1px solid #b2d8d0;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .role-title {
+      font-weight: 500;
+      font-size: 15px;
+      color: #111;
+      margin-bottom: 0.5rem;
+    }
+
+    .role-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .bullet-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .bullet-list li {
+      font-size: 14px;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.7;
+      padding-left: 1.25rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+
+    .bullet-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #7fc4b8;
+    }
+
+    .pullquote {
+      border-left: 2px solid #7fc4b8;
+      padding: 0.25rem 0 0.25rem 1.25rem;
+      margin: 1.75rem 0;
+    }
+
+    .pullquote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* CLOSING / CTA */
+    .cta {
+      padding: 4rem 0;
+      text-align: center;
+      border-bottom: 1px solid #b2d8d0;
+    }
+
+    .cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: #111;
+    }
+
+    .cta p {
+      font-size: 16px;
+      color: #666;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #1a1a1a;
+      color: #fafaf8;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 14px 30px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s;
+      text-decoration: none;
+    }
+
+    .btn:hover { background: #333; }
+
+    .contact-options {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+
+    .contact-alt {
+      font-size: 14px;
+      color: #888;
+    }
+
+    .contact-alt a {
+      color: #555;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .contact-alt a:hover { color: #111; }
+
+    /* FOOTER */
+    footer {
+      padding: 1.5rem 0;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 660px) {
+      .page-header h1 { font-size: 28px; }
+      .intro-row { grid-template-columns: 1fr; }
+      .about-photo { width: 100%; height: 260px; }
+      .contact-options { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a class="logo" href="index.html">Sean Hanson</a>
+      <a class="nav-cta" href="https://calendly.com/smhanson">Free Consultation</a>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <a class="back-link" href="index.html">← Back to home</a>
+      <div class="eyebrow">Background</div>
+      <h1>Three careers. One through-line.</h1>
+      <p class="subhead">Most professionals build depth in one discipline. Mine has built depth in three — and each one is load-bearing for the next. The thread connecting them: I have always worked where process discipline is inseparable from outcome quality.</p>
+    </div>
+  </section>
+
+  <div class="intro-row container">
+    <img class="about-photo" src="headshot.jpg" alt="Sean Hanson" />
+    <div class="intro-text">
+      <p>I'm a solo consultant based in St. Joseph, Minnesota. I work directly with law firms to automate document workflows, client intake, and the repetitive administrative work that quietly consumes attorney and staff time.</p>
+      <p>I use Anthropic's Claude to build practical automations that fit into your existing workflow — no rip-and-replace, no new software your team won't use. You'll see results quickly, and you'll understand exactly what's running.</p>
+      <p>What I bring to that work is a background in environments where process discipline wasn't optional — military intelligence, medical device manufacturing, large-scale energy infrastructure. The instincts those environments build transfer directly to the work of making a law firm run more precisely.</p>
+      <p class="contact-line">
+        <a href="mailto:SeanMHanson@hotmail.com">SeanMHanson@hotmail.com</a> &nbsp;·&nbsp;
+        <a href="tel:9802215702">(980) 221-5702</a> &nbsp;·&nbsp;
+        <a href="https://linkedin.com/in/mindfuldecisions" target="_blank">LinkedIn</a>
+      </p>
+    </div>
+  </div>
+
+  <section class="career-section">
+    <div class="container">
+      <div class="life-label">Life 1 — The Foundation</div>
+      <h2>US Navy &amp; Jabil Healthcare</h2>
+      <p class="org-line">Military Intelligence · Precision Medical Device Manufacturing</p>
+
+      <p>I began my professional life holding two distinct roles simultaneously inside the United States Navy. Both shaped the way I think about process, accountability, and precision in ways no classroom could have.</p>
+
+      <div class="role-block">
+        <div class="role-title">CTI2 / E5 — Russian Linguist, Military Intelligence</div>
+        <div class="role-desc">I interpreted and analyzed foreign communications, producing intelligence reports used at the highest levels of U.S. policy. Intelligence analysis demands something directly transferable to process work: the ability to take incomplete, ambiguous, sometimes contradictory information and produce a coherent, defensible conclusion. That is root cause analysis. That is gap analysis. That is problem-solving under pressure.</div>
+      </div>
+
+      <div class="role-block">
+        <div class="role-title">Classified Materials Documentation Librarian</div>
+        <div class="role-desc">Concurrently, I supervised and trained a junior Petty Officer in the management of classified materials — chain-of-custody, physical security, end-to-end document lifecycle, auditing, discrepancy resolution. In this environment, "close enough" was not a standard. It was a security breach. This was my first supervisory experience, and it happened in a zero-defect compliance context.</div>
+      </div>
+
+      <p>After the Navy, I arrived at Jabil Healthcare in Asheville, North Carolina — a facility producing precision pharmaceutical delivery devices including insulin pens and asthma inhalers. The stakes were different, but the standard I held myself to was the same: errors affect people.</p>
+
+      <p>As Quality Engineer and then Quality Project Manager, I built and owned:</p>
+      <ul class="bullet-list">
+        <li>Internal audit leadership (lead auditor) — ISO 9001:2015 compliance</li>
+        <li>Full CAPA lifecycle: NCRs, MRB records, deviation requests, 8D / 5-Why / Ishikawa root cause packages</li>
+        <li>Customer complaint investigations and supplier corrective actions (SCARs)</li>
+        <li>Behavior-based quality initiatives across two sites with measurable compliance improvements</li>
+        <li>The "Quality Hero" recognition program — building a shared quality culture across a diverse workforce</li>
+        <li>ISO 9001:2015-aligned training programs fostering a proactive quality culture</li>
+      </ul>
+
+      <blockquote class="pullquote">
+        <p>Errors affect people. That standard follows you — into every industry, every role, every workflow you touch.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="career-section">
+    <div class="container">
+      <div class="life-label">Life 2 — The Architecture</div>
+      <h2>ERP Consulting &amp; Blattner Energy</h2>
+      <p class="org-line">Standards Adoption · Enterprise Process Improvement</p>
+
+      <p>If Life 1 taught me what good standards look like, Life 2 taught me how to build standards that organizations actually adopt. That is a harder problem — and it requires a different skill set.</p>
+
+      <div class="role-block">
+        <div class="role-title">Software Trainer &amp; CRM Consultant — Key-Logic / Electrolux North America</div>
+        <div class="role-desc">I designed and implemented standardized templates and training programs, maintaining tight alignment with enterprise governance requirements, customer constraints, and style guide standards simultaneously. The measure of success was never whether the templates were technically correct — it was whether people used them. Adoption is the only metric that matters in standards work.</div>
+      </div>
+
+      <div class="role-block">
+        <div class="role-title">E-Commerce Manager &amp; Corporate Trainer — Education Community Credit Union</div>
+        <div class="role-desc">I came in without platform expertise, learned a new technology stack, built standard operating procedures from scratch, and kept the operation running. The lesson it reinforces: domain fluency is learnable. Process thinking is transferable. The instinct to find the broken handoff, define the standard, and make it stick works whether you're in military intelligence, a clean-room medical device facility, or a financial services back office.</div>
+      </div>
+
+      <div class="role-block">
+        <div class="role-title">Process Improvement Analyst — Blattner Energy</div>
+        <div class="role-desc">At Blattner I worked inside the operating system — learning how work actually flows across teams, understanding how the technology ecosystem connects, and building the cross-functional trust that is the real lever for standard adoption. You can have the best template in the world. Without trust, it sits on a shared drive.</div>
+      </div>
+
+      <p>Specific project work at Blattner included:</p>
+      <ul class="bullet-list">
+        <li>ISNetworld Subcontractor Management Software — process mapping and procedure creation</li>
+        <li>Project Controls (WS#1 + #5) — complex operational workflow documentation</li>
+        <li>SWI creation, RACI facilitation, workshop hosting, training resource development</li>
+      </ul>
+
+      <blockquote class="pullquote">
+        <p>The gap between a well-written procedure and a well-followed one is not a documentation problem. It's a trust and communication problem. Knowing that changes how you build.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="career-section">
+    <div class="container">
+      <div class="life-label">Life 3 — What It Produces</div>
+      <h2>Legal Process Automation</h2>
+      <p class="org-line">Where three careers converge</p>
+
+      <p>Put these experiences together and a particular kind of professional emerges — not a credential set, but a way of operating. Someone who has worked in environments where process discipline was not optional has a different relationship to standards than someone who learned them in a classroom.</p>
+
+      <p>They don't need to be convinced that documentation matters. They already know what happens when it doesn't.</p>
+
+      <p>For law firms, that translates into three specific capabilities:</p>
+      <ul class="bullet-list">
+        <li><strong style="font-weight:500; color:#111;">Diagnose process breakdowns, not just document them</strong> — because the environments I've worked in had real consequences for getting it wrong</li>
+        <li><strong style="font-weight:500; color:#111;">Build automations that your team actually uses</strong> — not just solutions that look correct on paper — because adoption is the only metric that matters</li>
+        <li><strong style="font-weight:500; color:#111;">Step into unfamiliar domains and improve them</strong> — because I have done exactly this across industries with very different stakes and very different technology</li>
+      </ul>
+
+      <p>There is a difference between understanding a process and having lived inside one. Having created procedures under deadline, watched adoption fail for reasons that had nothing to do with the template, and built cross-functional relationships from scratch rather than from authority — that experience tends to change how you approach the work.</p>
+
+      <p>It makes you slower to assume the standard is wrong and quicker to ask why it isn't being followed.</p>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Let's find your five minutes a day.</h2>
+      <p>Book a free consultation and we'll identify one thing slowing your team down — and show you what fixing it looks like.</p>
+      <a class="btn" href="https://calendly.com/smhanson">Book a Free Consultation</a>
+      <div class="contact-options">
+        <span class="contact-alt">or email <a href="mailto:SeanMHanson@hotmail.com">SeanMHanson@hotmail.com</a></span>
+        <span class="contact-alt">or call <a href="tel:9802215702">(980) 221-5702</a></span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-name">Sean Hanson</div>
+      <div class="footer-copy">© 2026 · seanhanson.com</div>
+    </div>
+  </footer>
+
+</body>
+</html>

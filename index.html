@@ -186,11 +186,15 @@
 
     .pitch-deck-frame {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 640px;
       border: 1px solid #b2d8d0;
       border-radius: 10px;
       display: block;
       background: #f5f5f5;
+    }
+
+    @media (max-width: 660px) {
+      .pitch-deck-frame { height: 420px; }
     }
 
     .pitch-deck-footer {
@@ -267,6 +271,39 @@
       color: #333;
       line-height: 1.65;
       font-style: italic;
+    }
+
+    /* CONTACT FORM */
+    .contact-form {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid #b2d8d0;
+    }
+
+    .contact-form h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      color: #111;
+    }
+
+    .contact-form .section-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: #666;
+      margin-bottom: 2rem;
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .form-frame {
+      width: 100%;
+      height: 860px;
+      border: 1px solid #b2d8d0;
+      border-radius: 10px;
+      display: block;
+      background: #fff;
     }
 
     /* CONTACT / CTA */
@@ -346,6 +383,7 @@
       .about-body { grid-template-columns: 1fr; }
       .about-photo { width: 100%; height: 260px; }
       .contact-options { flex-direction: column; gap: 0.75rem; }
+      .form-frame { height: 1050px; }
     }
 
     @media (max-width: 480px) {
@@ -427,7 +465,8 @@
       <div class="about-body">
         <img class="about-photo" src="headshot.jpg" alt="Sean Hanson" />
         <div class="about-copy">
-          <p>I work directly with your team. No account managers, no hand-offs.</p>
+          <p>I work directly with your team — no account managers, no hand-offs.</p>
+          <p>My background spans military intelligence, healthcare quality engineering, and large-scale process improvement. I've spent my career finding the inefficiency that everyone else stopped noticing.</p>
           <p>I use Anthropic's Claude to build practical automations that fit into your existing workflow. Your firm already has the data. I help you do more with it.</p>
           <p>You'll see results quickly — and you'll understand exactly what's running.</p>
         </div>
@@ -435,13 +474,32 @@
           <p>The goal isn't a dramatic transformation. It's finding the five minutes a day that nobody notices they're losing. Five minutes per attorney adds up to more than 30 hours a year — per person.</p>
         </blockquote>
       </div>
+      <div style="margin-top: 2rem;">
+        <a href="about.html" style="font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: #0d9488; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px;">Read my full background →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-form" id="contact">
+    <div class="container">
+      <div class="section-label">Get in Touch</div>
+      <h2>Tell me about your firm</h2>
+      <p class="section-sub">Fill out the form and I'll be in touch within one business day. Or if you'd rather talk first, <a href="https://calendly.com/smhanson" style="color:#0d9488; text-decoration:underline; text-underline-offset:3px;">book a free consultation</a>.</p>
+      <iframe
+        class="form-frame"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdsyCKJ_oH9eDwjTWzUUEwAYATs_GHia_bDLd3_nt3lD4npNA/viewform?embedded=true"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        loading="lazy"
+        title="Contact Form">Loading…</iframe>
     </div>
   </section>
 
   <section class="cta">
     <div class="container">
-      <h2>Not sure where to start?</h2>
-      <p>We'll find one thing slowing your team down and show you what fixing it looks like.</p>
+      <h2>Prefer a quick call?</h2>
+      <p>Book a free 30-minute consultation. No pitch, no pressure — just a look at one thing slowing your team down.</p>
       <a class="btn" href="https://calendly.com/smhanson">Book a Free Consultation</a>
       <div class="contact-options">
         <span class="contact-alt">or email <a href="mailto:SeanMHanson@hotmail.com">SeanMHanson@hotmail.com</a></span>
