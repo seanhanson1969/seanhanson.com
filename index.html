@@ -178,6 +178,41 @@
       font-style: italic;
     }
 
+    /* PITCH DECK */
+    .pitch-deck {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid #b2d8d0;
+    }
+
+    .pitch-deck-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid #b2d8d0;
+      border-radius: 10px;
+      display: block;
+      background: #f5f5f5;
+    }
+
+    .pitch-deck-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+
+    .pitch-deck-footer a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: #0d9488;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .pitch-deck-footer a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     /* ABOUT */
     .about {
       padding: 3.5rem 0;
@@ -369,6 +404,22 @@
     </div>
   </section>
 
+  <section class="pitch-deck">
+    <div class="container">
+      <div class="section-label">See it in action</div>
+      <iframe
+        class="pitch-deck-frame"
+        src="Claude_Legal_Presentation.html"
+        allowfullscreen
+        loading="lazy"
+        title="Legal Process Automation — Overview">
+      </iframe>
+      <div class="pitch-deck-footer">
+        <a href="Claude_Legal_Presentation.html" target="_blank">↗ View fullscreen</a>
+      </div>
+    </div>
+  </section>
+
   <section class="about">
     <div class="container">
       <div class="section-label">About</div>
@@ -381,7 +432,7 @@
           <p>You'll see results quickly — and you'll understand exactly what's running.</p>
         </div>
         <blockquote class="pullquote">
-          <p>The goal isn't a dramatic transformation. It's finding the five minutes a day that nobody notices they're losing. Five minutes per attorney adds up to more than 20 hours a year — per person.</p>
+          <p>The goal isn't a dramatic transformation. It's finding the five minutes a day that nobody notices they're losing. Five minutes per attorney adds up to more than 30 hours a year — per person.</p>
         </blockquote>
       </div>
     </div>
