@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Field Guide to Claude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #1a2332;
+      --paper:  #f5f2eb;
+      --amber:  #c8862a;
+      --steel:  #3d5a80;
+      --muted:  #7a8a9a;
+      --white:  #ffffff;
+      --rule:   #c8c0b0;
+      --tagbg:  #e8e2d6;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      color: var(--white);
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px),
+        repeating-linear-gradient(0deg,  transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px);
+      pointer-events: none;
+    }
+    .header-inner { max-width: 860px; margin: 0 auto; position: relative; }
+
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    h1 strong { font-weight: 600; color: var(--amber); }
+
+    .subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+    .analogy-banner {
+      margin-top: 28px;
+      display: inline-block;
+      background: rgba(200,134,42,0.15);
+      border: 1px solid rgba(200,134,42,0.4);
+      border-radius: 4px;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+    }
+    .analogy-banner strong { color: var(--amber); }
+
+    /* ── MAIN ── */
+    main { max-width: 860px; margin: 0 auto; padding: 48px 40px 80px; }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+    /* ── CARD GRID ── */
+    .cards-grid {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    .cards-grid.tools { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    .cards-grid.terms { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+
+    /* ── CARD SHELL ── */
+    .card {
+      border-radius: 6px;
+      cursor: pointer;
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    .card:focus-visible { box-shadow: 0 0 0 3px var(--amber); }
+
+    /* FRONT face */
+    .card-front {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .card-front.chat   { border-top: 3px solid #5b8dd9; }
+    .card-front.cowork { border-top: 3px solid #4caf86; }
+    .card-front.code   { border-top: 3px solid #9c6dd6; }
+    .card-front.app    { border-top: 3px solid var(--amber); }
+    .card-front.skill  { border-top: 3px solid #d95b7a; }
+    .card-front.agent  { border-top: 3px solid #5bc8d9; }
+    .card-front.task   { border-top: 3px solid #8dd95b; }
+
+    /* BACK face */
+    .card-back {
+      background: var(--ink);
+      border: 1px solid var(--steel);
+      border-radius: 6px;
+      padding: 22px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      color: var(--white);
+    }
+    .card.flipped .card-front { display: none; }
+    .card.flipped .card-back  { display: flex; }
+
+    /* Card internals */
+    .card-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--tagbg);
+      color: var(--muted);
+      padding: 3px 8px;
+      border-radius: 3px;
+      align-self: flex-start;
+    }
+    .card-back .card-tag {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.55);
+    }
+    .card-icon { font-size: 26px; }
+    .card-title {
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .card-back .card-title { color: var(--white); }
+
+    .card-analogy {
+      font-size: 13px;
+      color: var(--steel);
+      font-style: italic;
+      line-height: 1.55;
+    }
+    .card-back .card-analogy {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--amber);
+    }
+    .card-body {
+      font-size: 13px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.6;
+    }
+    .card-hint {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--rule);
+      text-align: right;
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+    .card-back .card-hint { color: rgba(255,255,255,0.22); }
+
+    /* ── HOW THEY CONNECT ── */
+    .connect-block {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 28px 30px;
+    }
+    .connect-block h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .scenario { display: flex; flex-direction: column; gap: 10px; }
+
+    .scenario-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 4px;
+      background: var(--paper);
+      border-left: 3px solid var(--rule);
+      font-size: 13.5px;
+      transition: border-color 0.2s;
+    }
+    .scenario-step:hover { border-left-color: var(--amber); }
+    .step-tool {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--steel);
+      padding: 3px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-text { color: var(--ink); line-height: 1.5; }
+    .step-text em { color: var(--amber); font-style: normal; font-weight: 500; }
+
+    footer {
+      text-align: center;
+      padding: 32px 40px 48px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 560px) {
+      header, main { padding-left: 20px; padding-right: 20px; }
+      .cards-grid.tools,
+      .cards-grid.terms { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 380px) {
+      .cards-grid.tools,
+      .cards-grid.terms { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="eyebrow">// A field guide for the curious</p>
+    <h1>Meet <strong>Claude.</strong><br>The whole crew.</h1>
+    <p class="subtitle">Sean uses a few different versions of Claude depending on the job. This page breaks down what each one does — and what the jargon means — using an analogy you can actually picture.</p>
+    <div class="analogy-banner">
+      <strong>The analogy:</strong> Think of Claude as a firm of specialists. Chat is the consultant on call. Cowork is the foreman on-site. Code is the specialist contractor.
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <p class="section-label">The tools &mdash; click any card to flip it</p>
+
+  <div class="cards-grid tools">
+
+    <div class="card" tabindex="0" role="button" aria-label="Claude.ai card, click to flip">
+      <div class="card-front app">
+        <span class="card-tag">The firm</span>
+        <div class="card-icon">🏢</div>
+        <div class="card-title">Claude.ai</div>
+        <div class="card-analogy">The agency itself — the front door, the lobby, and where you go to hire someone.</div>
+        <div class="card-hint">click to flip &rarr;</div>
+      </div>
+      <div class="card-back">
+        <span class="card-tag">What it actually is</span>
+        <div class="card-title">Claude.ai</div>
+        <div class="card-analogy">The main Anthropic website and app</div>
+        <div class="card-body">The web and mobile interface where you can chat with Claude, access all the tools, manage settings, and see past conversations. It's the home base for everything.</div>
+        <div class="card-hint">&larr; click to flip back</div>
+      </div>
+    </div>
+
+    <div class="card" tabindex="0" role="button" aria-label="Chat card, click to flip">
+      <div class="card-front chat">
+        <span class="card-tag">The consultant</span>
+        <div class="card-icon">💬</div>
+        <div class="card-title">Chat</div>
+        <div class="card-analogy">You call the office with a question. An expert picks up and talks you through it. No appointment needed.</div>
+        <div class="card-hint">click to flip &rarr;</div>
+      </div>
+      <div class="card-back">
+        <span class="card-tag">What it actually is</span>
+        <div class="card-title">Chat</div>
+        <div class="card-analogy">Back-and-forth conversation with Claude</div>
+        <div class="card-body">The standard Claude.ai chat window. You ask something, Claude answers. Great for brainstorming, writing help, explaining things, and quick research. The most common starting point for most people.</div>
+        <div class="card-hint">&larr; click to flip back</div>
+      </div>
+    </div>
+
+    <div class="card" tabindex="0" role="button" aria-label="Cowork card, click to flip">
+      <div class="card-front cowork">
+        <span class="card-tag">The foreman</span>
+        <div class="card-icon">🦺</div>
+        <div class="card-title">Cowork</div>
+        <div class="card-analogy">The foreman lives at your job site. He knows your tools, your filing system, your preferences — and he does real work, not just advice.</div>
+        <div class="card-hint">click to flip &rarr;</div>
+      </div>
+      <div class="card-back">
+        <span class="card-tag">What it actually is</span>
+        <div class="card-title">Claude Cowork</div>
+        <div class="card-analogy">A desktop app that connects Claude to your computer</div>
+        <div class="card-body">Cowork sits on your desktop and can access your files, calendar, email, and other apps. It takes real actions — not just suggestions. Sean uses it every morning to pull together his daily briefing automatically.</div>
+        <div class="card-hint">&larr; click to flip back</div>
+      </div>
+    </div>
+
+    <div class="card" tabindex="0" role="button" aria-label="Code card, click to flip">
+      <div class="card-front code">
+        <span class="card-tag">The engine room</span>
+        <div class="card-icon">⚙️</div>
+        <div class="card-title">Code</div>
+        <div class="card-analogy">The engine room of the building. You never go in there — but when the lights turn on, that's where it happened.</div>
+        <div class="card-hint">click to flip &rarr;</div>
+      </div>
+      <div class="card-back">
+        <span class="card-tag">What it actually is</span>
+        <div class="card-title">Claude Code</div>
+        <div class="card-analogy">How Claude does technical work behind the scenes</div>
+        <div class="card-body">Sean doesn't open Code — Claude does. When Sean asks for an HTML page or a script, Claude Code is what runs under the hood: writing, testing, and building the actual files. You describe what you want. Claude handles the engine room.</div>
+        <div class="card-hint">&larr; click to flip back</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="section-label">The vocabulary &mdash; click any card to flip it</p>
+
+  <div class="cards-grid terms">
+
+    <div class="card" tabindex="0" role="button" aria-label="Skills card, click to flip">
+      <div class="card-front skill">
+        <span class="card-tag">Certifications + toolbox</span>
+        <div class="card-icon">🧰</div>
+        <div class="card-title">Skills</div>
+        <div class="card-analogy">A foreman's union card. It tells Claude "here's how we do things here — our tools, our formats, our standards."</div>
+        <div class="card-hint">click to flip &rarr;</div>
+      </div>
+      <div class="card-back">
+        <span class="card-tag">What it actually is</span>
+        <div class="card-title">Skills</div>
+        <div class="card-analogy">Pre-written instructions that teach Claude a specific job</div>
+        <div class="card-body">Skills are saved playbooks. Sean has skills that tell Claude how to run his morning briefing, how to format Blattner documents, how to fetch meeting transcripts. Load a skill and Claude follows that process — every time, automatically.</div>
+        <div class="card-hint">&larr; click to flip back</div>
+      </div>
+    </div>
+
+    <div class="card" tabindex="0" role="button" aria-label="Agent card, click to flip">
+      <div class="card-front agent">
+        <span class="card-tag">The crew running solo</span>
+        <div class="card-icon">🤖</div>
+        <div class="card-title">Agent</div>
+        <div class="card-analogy">A crew you dispatch with a blueprint. They handle it start to finish — you check the work when it's done, not every step along the way.</div>
+        <div class="card-hint">click to flip &rarr;</div>
+      </div>
+      <div class="card-back">
+        <span class="card-tag">What it actually is</span>
+        <div class="card-title">Agent</div>
+        <div class="card-analogy">Claude operating independently on a multi-step goal</div>
+        <div class="card-body">When Claude acts as an agent, it breaks a goal into steps, makes decisions along the way, and carries them out — without you approving each move. It might search the web, read files, and write a report all on its own.</div>
+        <div class="card-hint">&larr; click to flip back</div>
+      </div>
+    </div>
+
+    <div class="card" tabindex="0" role="button" aria-label="Task card, click to flip">
+      <div class="card-front task">
+        <span class="card-tag">The work order</span>
+        <div class="card-icon">📋</div>
+        <div class="card-title">Task</div>
+        <div class="card-analogy">A work order with a specific scope. Not a conversation — a job. "Complete this. Deliver that. Done."</div>
+        <div class="card-hint">click to flip &rarr;</div>
+      </div>
+      <div class="card-back">
+        <span class="card-tag">What it actually is</span>
+        <div class="card-title">Task</div>
+        <div class="card-analogy">A defined unit of work Claude completes and hands back</div>
+        <div class="card-body">A task is a specific, bounded assignment — not an open-ended chat. You define what you need, Claude does it, and returns a result. Think of it as the difference between "let's talk about dinner" and "make a reservation for two at 7pm."</div>
+        <div class="card-hint">&larr; click to flip back</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="connect-block">
+    <h2>How they fit together — a real example from Sean's day</h2>
+    <div class="scenario">
+      <div class="scenario-step">
+        <span class="step-tool">Cowork</span>
+        <span class="step-text">Every morning, Cowork runs Sean's <em>Daily Briefing skill</em> automatically — pulling his calendar, flagged emails, and task list into one document before he even opens his laptop.</span>
+      </div>
+      <div class="scenario-step">
+        <span class="step-tool">Chat</span>
+        <span class="step-text">Sean opens Claude.ai Chat and asks for help drafting a section of a safety procedure. It's a back-and-forth: Claude suggests language, Sean revises, they go a few rounds.</span>
+      </div>
+      <div class="scenario-step">
+        <span class="step-tool">Agent</span>
+        <span class="step-text">For a bigger research job — like summarizing a long policy document — Sean hands it to Claude as an <em>agent task</em>. Claude reads, analyzes, and returns a summary without Sean in the loop for each step.</span>
+      </div>
+      <div class="scenario-step">
+        <span class="step-tool">Code</span>
+        <span class="step-text">When Sean asks for something technical — like this HTML page — Claude Code is what actually builds it. Sean never opens a terminal. He just describes what he wants and gets a finished file back.</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>MADE WITH CLAUDE &middot; FOR CURIOUS MINDS &middot; ANTHROPIC 2026</footer>
+
+<script>
+  document.querySelectorAll('.card').forEach(card => {
+    function toggle() { card.classList.toggle('flipped'); }
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+</script>
+
+</body>
+</html>
