@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel Formula Bar Symbols | Blattner Quick Reference</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F2F2F2;
+    color: #333333;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background-color: #02568A;
+    padding: 27px 43px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-wrapper {
+    height: 52px;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-wrapper svg {
+    height: 52px;
+    width: auto;
+  }
+
+  .header-title {
+    color: #FFFFFF;
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: right;
+  }
+
+  /* HERO BAND */
+  .hero {
+    background-color: #02568A;
+    padding: 0 43px 36px 43px;
+    border-bottom: 4px solid #2DA2DB;
+  }
+
+  .hero h1 {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .hero p {
+    color: #B9E5FB;
+    font-size: 14px;
+    max-width: 640px;
+    line-height: 1.6;
+  }
+
+  .hero-link {
+    display: inline-block;
+    margin-top: 14px;
+    background-color: #2DA2DB;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    padding: 9px 18px;
+  }
+
+  .hero-link:hover {
+    background-color: #B9E5FB;
+    color: #02568A;
+  }
+
+  /* MAIN CONTENT */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 32px 48px 32px;
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+    align-items: center;
+  }
+
+  .filter-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #76777B;
+    margin-right: 4px;
+  }
+
+  .filter-btn {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 7px 14px;
+    border: 2px solid #BCBCBC;
+    background-color: #FFFFFF;
+    color: #333333;
+    cursor: pointer;
+  }
+
+  .filter-btn:hover {
+    border-color: #2DA2DB;
+    color: #02568A;
+  }
+
+  .filter-btn.active {
+    background-color: #02568A;
+    border-color: #02568A;
+    color: #FFFFFF;
+  }
+
+  /* SYMBOL GRID */
+  .symbol-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+  }
+
+  /* CARD */
+  .card {
+    background-color: #FFFFFF;
+    border-top: 4px solid #2DA2DB;
+    padding: 24px 24px 20px 24px;
+    cursor: pointer;
+    position: relative;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 16px #BCBCBC;
+  }
+
+  .card.expanded {
+    border-top-color: #02568A;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+
+  .symbol-badge {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: #02568A;
+    background-color: #F2F2F2;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid #BCBCBC;
+    letter-spacing: 0;
+  }
+
+  .card-meta {
+    flex: 1;
+  }
+
+  .card-num {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #76777B;
+    margin-bottom: 3px;
+  }
+
+  .card-name {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #02568A;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+  }
+
+  .card-tag {
+    display: inline-block;
+    margin-top: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    background-color: #B9E5FB;
+    color: #02568A;
+  }
+
+  .card-summary {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #333333;
+    line-height: 1.55;
+    border-top: 1px solid #F2F2F2;
+    padding-top: 10px;
+  }
+
+  /* EXPANDED DETAIL */
+  .card-detail {
+    display: none;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 2px solid #B9E5FB;
+  }
+
+  .card.expanded .card-detail {
+    display: block;
+  }
+
+  .detail-section-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #76777B;
+    margin-bottom: 5px;
+    margin-top: 12px;
+  }
+
+  .detail-section-label:first-child {
+    margin-top: 0;
+  }
+
+  .example-box {
+    background-color: #F2F2F2;
+    border-left: 3px solid #2DA2DB;
+    padding: 8px 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #02568A;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin-bottom: 4px;
+    word-break: break-all;
+  }
+
+  .example-result {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #76777B;
+    padding-left: 4px;
+    margin-bottom: 8px;
+  }
+
+  .detail-note {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #333333;
+    line-height: 1.55;
+    background-color: #F2F2F2;
+    padding: 8px 10px;
+    border-left: 3px solid #BCBCBC;
+    margin-top: 8px;
+  }
+
+  .expand-hint {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #2DA2DB;
+    text-align: right;
+    margin-top: 10px;
+  }
+
+  .card.expanded .expand-hint {
+    color: #76777B;
+  }
+
+  /* HIDDEN STATE */
+  .card.hidden {
+    display: none;
+  }
+
+  /* FOOTER */
+  footer {
+    background-color: #02568A;
+    color: #B9E5FB;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding: 18px 43px;
+  }
+
+  footer a {
+    color: #B9E5FB;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrapper">
+    <?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1919.2 612.5" style="enable-background:new 0 0 1919.2 612.5;" xml:space="preserve"><style type="text/css">.st0{fill:none;}.st1{fill:#FFFFFF;}.st2{fill:#EB9222;}.st3{fill:#C2732A;}</style><g><g><polygon class="st0" points="472.8,481 475.3,486.4 477.6,491 475.3,486.4"/><polygon class="st0" points="457.9,467.3 485.2,508.1 469,483.9"/><path class="st1" d="M338.5,443.8h-16.2l-18.9,50.1h14l2.6-7.6h20.8l2.6,7.6h14L338.5,443.8z M323.4,475.4l7-20.4l7.1,20.4H323.4z"/><path class="st1" d="M538.1,473.2c0,5.9-3.2,10.2-10.1,10.2c-7,0-10.1-4.3-10.1-10.2v-29.4h-13.1v29.8c0,12.3,7.2,21.2,23.3,21.2c16.1,0,23.2-8.8,23.2-21.3v-29.7h-13.1V473.2z"/><path class="st1" d="M591,443.8h-16.2l-18.9,50.1h14l2.6-7.6h20.8l2.6,7.6h14L591,443.8z M575.9,475.4l7-20.4l7.1,20.4H575.9z"/><polygon class="st1" points="650.9,472.6 630.6,443.8 617.3,443.8 617.3,493.9 630.2,493.9 630.2,463.6 651.4,493.9 663.9,493.9 663.9,443.8 650.9,443.8"/><polygon class="st1" points="714.8,443.8 673.8,443.8 673.8,455.1 687.9,455.1 687.9,493.9 700.8,493.9 700.8,455.1 714.8,455.1"/><path class="st1" d="M749.8,443.8h-16.2l-18.9,50.1h14l2.6-7.6h20.8l2.6,7.6h14L749.8,443.8z M734.7,475.4l7-20.4l7.1,20.4H734.7z"/><path class="st1" d="M819,462.6c-5.6-1.1-8.6-2-8.6-4.6c0-2.2,1.7-3.9,5.9-3.9c4.4,0,9.9,1.7,14.1,5.2l7.1-9.2c-5.3-4.6-12.3-7-20.4-7c-12.8,0-20,7.3-20,15.7c0,11.9,11.6,14,19.8,15.6c5.3,1.1,8.6,2.3,8.6,5.1c0,2.4-2.7,4.3-7.1,4.3c-6.8,0-12.4-3-16-6.6l-6.8,9.7c5,4.8,12.1,8,22.2,8c13.4,0,20.9-6.7,20.9-16.7C838.6,466.7,827.2,464.3,819,462.6z"/><polygon class="st1" points="848.4,493.9 885.1,493.9 885.1,483 861.3,483 861.3,474 884.6,474 884.6,463 861.3,463 861.3,454.7 885.1,454.7 885.1,443.8 848.4,443.8"/><path class="st1" d="M928.9,475.5c4.7-1.7,10-6.3,10-15c0-9.3-6.3-16.7-17.4-16.7h-25.1v50.1h12.9v-17h6.6l8.4,17h14.8L928.9,475.5z M919.5,466h-10.2v-11.3h10.2c3.4,0,6.2,2.2,6.2,5.6C925.8,463.8,922.9,466,919.5,466z"/><polygon class="st1" points="970.7,479.9 958.4,443.8 943.7,443.8 962.6,493.9 978.8,493.9 997.7,443.8 983.1,443.8"/><rect x="1006.7" y="443.8" class="st1" width="12.9" height="50.1"/><path class="st1" d="M1056.6,454.4c5.2,0,9.5,3.3,11.1,7.3l11.1-5.3c-3.3-6.6-9.8-13.4-22.2-13.4c-15,0-26.7,10.4-26.7,25.9c0,15.4,11.7,25.9,26.7,25.9c12.5,0,19-7,22.2-13.4l-11.1-5.3c-1.7,4-5.9,7.3-11.1,7.3c-7.8,0-13.6-6.3-13.6-14.5C1043,460.7,1048.8,454.4,1056.6,454.4z"/><polygon class="st1" points="1088.1,493.9 1124.8,493.9 1124.8,483 1101,483 1101,474 1124.3,474 1124.3,463 1101,463 1101,454.7 1124.8,454.7 1124.8,443.8 1088.1,443.8"/><path class="st1" d="M1155.9,462.6c-5.6-1.1-8.6-2-8.6-4.6c0-2.2,1.7-3.9,5.9-3.9c4.4,0,9.9,1.7,14.1,5.2l7.1-9.2c-5.3-4.6-12.3-7-20.4-7c-12.8,0-20,7.3-20,15.7c0,11.9,11.6,14,19.8,15.6c5.3,1.1,8.6,2.3,8.6,5.1c0,2.4-2.7,4.3-7.1,4.3c-6.8,0-12.4-3-16-6.6l-6.8,9.7c5,4.8,12.1,8,22.2,8c13.4,0,20.9-6.7,20.9-16.7C1175.6,466.7,1164.2,464.3,1155.9,462.6z"/><path class="st1" d="M1232.6,454.4c5.2,0,9.5,3.3,11.1,7.3l11.1-5.3c-3.3-6.6-9.8-13.4-22.2-13.4c-15,0-26.7,10.4-26.7,25.9c0,15.4,11.7,25.9,26.7,25.9c12.5,0,19-7,22.2-13.4l-11.1-5.3c-1.7,4-5.9,7.3-11.1,7.3c-7.8,0-13.6-6.3-13.6-14.5C1219,460.7,1224.8,454.4,1232.6,454.4z"/><polygon class="st1" points="1353.8,472.2 1343.4,443.8 1325.4,443.8 1325.4,493.9 1338.3,493.9 1338.3,460.1 1351,493.9 1356.7,493.9 1369.4,460.1 1369.4,493.9 1382.3,493.9 1382.3,443.8 1364.3,443.8"/><path class="st1" d="M1420.2,443.8h-25.1v50.1h12.9v-17h12.2c11.3,0,17.4-7.4,17.4-16.5C1437.6,451.4,1431.4,443.8,1420.2,443.8z M1418.4,466H1408v-11.3h10.4c3.5,0,6,2.3,6,5.7C1424.4,463.8,1421.9,466,1418.4,466z"/><path class="st1" d="M1471.5,443.8h-16.2l-18.9,50.1h14l2.6-7.6h20.8l2.6,7.6h14L1471.5,443.8z M1456.4,475.4l7-20.4l7.1,20.4H1456.4z"/><polygon class="st1" points="1531.4,472.6 1511.1,443.8 1497.8,443.8 1497.8,493.9 1510.8,493.9 1510.8,463.6 1531.9,493.9 1544.4,493.9 1544.4,443.8 1531.4,443.8"/><polygon class="st1" points="1588,443.8 1577.3,462.3 1566.4,443.8 1551.8,443.8 1570.9,473.7 1570.9,493.9 1583.8,493.9 1583.8,473.7 1602.7,443.8"/><path class="st2" d="M472.8,481l-9.7-20.1l-0.4-0.8l-0.4-0.9c-0.1-0.2-0.2-0.3-0.4-0.3c0,0,0,0,0,0c-0.1,0-0.2,0-0.3,0.1l-4.2,3.5l-0.6,0.5l0,0l0,0l-3.6-4.9l-0.4-0.5c-4.3-3.4-9.7-4.7-14.8-3.8c-0.3,0-0.5,0.1-0.8,0.2l1.8,2.2l13,16.3l5.9-5.2l11.1,16.6l16.2,24.2l0.4-0.3l-8-16.7l-2.2-4.7L472.8,481z"/><path class="st3" d="M451.9,472.5l-13-16.3l-1.8-2.2c-0.2,0-0.4,0.1-0.6,0.1c-1.7,0.4-3.3,1.1-4.8,1.9c0,0-0.1,0-0.1,0c0,0-0.1,0-0.1,0.1c-1,0.6-2,1.3-2.9,2.2l-0.5,0.5c0,0-0.1,0.1-0.1,0.1l17.3,23.7c0.2,0.3,0.7,0.4,1,0.1l8.4-7.1l9.7,10.6l0,0c0,0,0,0,0,0l3.4,3.7l3.4,3.7c0,0,0,0,0,0l13.6,14.8l0.4-0.3l-27.4-40.8L451.9,472.5z"/><path class="st1" d="M467.9,490l-3.4-3.7c0,0,0,0,0,0c-4.4,1.9-9.5,2.9-15,2.9c-16.4,0-29.7-9.6-29.7-21.5c0-0.5,0-1,0.1-1.5l0,0c0.3-2.6,1.3-5,2.9-7.2c0.1-0.2,0.2-0.3,0.3-0.5c0.6-0.8,1.3-1.6,2-2.3l0.6-0.5c0.9-0.8,1.9-1.6,3-2.2c0,0,0.1,0,0.1-0.1c0,0,0,0,0.1,0c1.5-0.9,3.2-1.5,4.8-1.9c0.5-0.1,0.9-0.2,1.4-0.3c5.8-1,11.9,0.7,16.4,5c0.2,0.2,0.5,0.4,0.6,0.5s0.2,0.2,0.4,0.3c0,0,0,0,0,0l-0.6-0.8l-0.7-0.9c-0.1-0.1-0.1-0.2-0.2-0.2c-2.7-3.5-6-6.2-9.7-8.1c-1.8-0.9-3.6-1.5-5.5-2c-0.4-0.1-0.9-0.2-1.3-0.3c-4.2-0.8-8.5-0.6-12.6,0.7c-0.1,0-0.2,0-0.2,0.1c-1.3,0.4-2.7,0.9-3.9,1.6c-2.2,1.1-4.3,2.5-6.2,4.3c0,0,0,0,0,0c0,0,0,0,0,0c-0.2,0.2-0.3,0.3-0.5,0.5c-0.1,0.1-0.1,0.1-0.2,0.2c-0.1,0.1-0.2,0.2-0.3,0.3c-0.1,0.1-0.1,0.1-0.2,0.2c-0.1,0.1-0.2,0.2-0.3,0.3c-0.1,0.1-0.1,0.1-0.2,0.2c-0.1,0.1-0.2,0.2-0.3,0.3c-0.1,0.1-0.1,0.1-0.2,0.2c-0.1,0.1-0.2,0.2-0.3,0.3c-0.1,0.1-0.1,0.1-0.2,0.2c-0.1,0.1-0.2,0.2-0.3,0.3c0,0.1-0.1,0.1-0.1,0.2c-0.1,0.2-0.3,0.3-0.4,0.5c0,0,0,0,0,0c-0.1,0.2-0.3,0.3-0.4,0.5c0,0.1-0.1,0.1-0.1,0.2c-0.1,0.1-0.2,0.2-0.3,0.4c0,0.1-0.1,0.1-0.1,0.2c-0.1,0.1-0.1,0.2-0.2,0.3c0,0.1-0.1,0.1-0.1,0.2c-0.1,0.1-0.1,0.2-0.2,0.3c0,0.1-0.1,0.1-0.1,0.2c-0.1,0.1-0.1,0.2-0.2,0.3c0,0.1-0.1,0.1-0.1,0.2c-0.1,0.1-0.1,0.2-0.2,0.4c0,0.1-0.1,0.1-0.1,0.2c-0.1,0.2-0.2,0.4-0.3,0.6c0,0,0,0,0,0c-0.1,0.2-0.2,0.4-0.3,0.6c0,0.1-0.1,0.1-0.1,0.2c-0.1,0.1-0.1,0.3-0.2,0.4c0,0.1-0.1,0.1-0.1,0.2c0,0.1-0.1,0.2-0.1,0.4c0,0.1-0.1,0.2-0.1,0.2c0,0.1-0.1,0.2-0.1,0.3c0,0.1-0.1,0.2-0.1,0.2c0,0.1-0.1,0.2-0.1,0.4c0,0.1,0,0.1-0.1,0.2c0,0.1-0.1,0.3-0.1,0.4c0,0.1,0,0.1-0.1,0.2c-0.1,0.2-0.1,0.4-0.2,0.6c0,0.2-0.1,0.4-0.1,0.6c0,0.1,0,0.1,0,0.2c0,0.1-0.1,0.3-0.1,0.4c0,0.1,0,0.2,0,0.2c0,0.1,0,0.2-0.1,0.4c0,0.1,0,0.2,0,0.2c0,0.1,0,0.2,0,0.4c0,0.1,0,0.2,0,0.2c0,0.1,0,0.3,0,0.4c0,0.1,0,0.2,0,0.2c0,0.1,0,0.3,0,0.4c0,0.1,0,0.1,0,0.2c0,0.2,0,0.4,0,0.6c0,16.2,20.6,29.3,46.1,29.3c7.9,0,15.2-1.3,21.7-3.5c0,0,0,0,0,0L467.9,490z"/><path class="st1" d="M491.9,456.2c-0.3-0.5-0.7-0.9-1-1.4c0,0,0,0,0-0.1c-0.1-0.1-0.1-0.2-0.2-0.3l0,0c-11.5-15.1-43.7-18.4-44-18.4l0,0c-0.1,0-0.2,0.2-0.2,0.4c0,0.2,0,0.4,0.1,0.4c0,0,0,0,0,0v0c0.2,0,7.4,0.7,16.1,3.1c0,0,0,0,0,0c0,0,0,0,0,0c-1-0.2-1.5-0.4-1.5-0.4l0,0c0,0,0,0,0,0c-0.1,0-0.1,0.1-0.2,0.2c-7.5-1.8-13.3-2.5-13.4-2.5v0c-0.1,0-0.2,0.2-0.2,0.4c0,0.2,0,0.4,0.1,0.4c0,0,0,0,0,0v0c0,0,0.7,0.1,1.9,0.2c0,0.1-0.1,0.2-0.1,0.3c0,0,0,0.1,0,0.1c-2.2-0.3-3.6-0.5-3.6-0.5l0,0c-0.1,0-0.2,0.2-0.2,0.4c0,0.2,0,0.4,0.1,0.4c0,0,0,0,0,0v0c0.1,0,1.2,0.1,3.2,0.4c-0.1,0.1-0.1,0.2-0.1,0.3c0,0.2,0,0.4,0.1,0.4v0c0.1,0,4.8,0.5,10.8,1.8c0,0,0,0,0,0.1c0,0,0,0,0,0.1c-5.6-1.2-9.8-1.5-9.9-1.6l0,0c0,0,0,0,0,0c-0.1,0-0.2,0.2-0.2,0.4c0,0.1,0,0.2,0,0.3c-0.9-0.1-1.4-0.1-1.4-0.1l0,0c0,0,0,0,0,0c-0.1,0-0.2,0.2-0.2,0.4c0,0.2,0.1,0.4,0.1,0.4l0,0c0.1,0,6.5,0.5,14.1,2.4c0,0,0,0,0,0c-8.6-2-16.4-2.4-16.4-2.4l0,0c0,0,0,0,0,0c-0.1,0-0.2,0.2-0.2,0.4c0,0.2,0.1,0.4,0.2,0.4v0c0,0,0.7,0,1.7,0.1c-0.1,0.1-0.1,0.2-0.1,0.3c0,0.2,0.1,0.4,0.1,0.4v0c0.1,0,6.5,0.4,13.8,2.2c0,0,0,0.1,0,0.1c0,0,0,0,0,0c-7.6-1.9-14.8-2.2-16.3-2.3l-0.1,0v0c0,0,0,0,0,0c-0.1,0-0.2,0.2-0.2,0.4c0,0.2,0.1,0.4,0.1,0.4v0l0.1,0c2,0.1,14.1,0.7,23.8,4.6c0,0,0,0.1,0,0.1c0,0,0,0.1,0,0.1c-8.8-3.7-18.7-4.3-20.4-4.4l-0.1,0c0,0,0,0,0,0c-0.1,0-0.2,0.2-0.2,0.4c0,0,0,0,0,0c-0.9,0-1.6-0.1-2-0.1l-0.1,0v0c-0.1,0-0.2,0.2-0.2,0.4c0,0.2,0.1,0.4,0.2,0.4c0,0,0,0,0,0v0l0.1,0c2.1,0,16,0.3,25.8,6.1c0,0,0,0,0,0.1c0,0,0,0,0,0c-9.5-5.2-21.5-5.8-21.9-5.8c0,0,0,0,0,0c-0.1,0-0.2,0.2-0.2,0.4c0,0.1,0,0.2,0.1,0.3c-1.3-0.1-2.1-0.1-2.2-0.1v0c-0.1,0-0.2,0.2-0.2,0.4c0,0.2,0.1,0.4,0.2,0.4v0c0.2,0,17.9,0.4,26.7,7.8c0.1,0.1,0.2,0.2,0.3,0.3c0,0,0,0,0,0c0.2,0.2,0.3,0.4,0.5,0.6h0c2.9,3.3,4.6,7.2,4.6,11.5c0,5.1-2.4,9.7-6.4,13.4l2.6,5.3l2.2,4.7c11-5.4,18-13.8,18-23.3C495.6,463.7,494.3,459.7,491.9,456.2C491.9,456.2,491.9,456.2,491.9,456.2z"/><path class="st1" d="M1288.4,443c-15.3,0-26.8,10.7-26.8,25.9c0,1.2,0.1,2.3,0.2,3.4c1.6,13.4,12.4,22.5,26.6,22.5c14.1,0,24.9-9.1,26.5-22.5c0.1-1.1,0.2-2.2,0.2-3.4C1315.1,453.6,1303.7,443,1288.4,443z M1288.4,483.4c-7.1,0-12-4.7-13.3-11.1c-0.2-1.1-0.3-2.2-0.3-3.4c0-8.2,5.3-14.5,13.7-14.5c8.3,0,13.6,6.3,13.6,14.5c0,1.2-0.1,2.3-0.3,3.4C1300.4,478.7,1295.4,483.4,1288.4,483.4z"/></g><g><g><rect x="1683.1" y="228.1" transform="matrix(0.5145 -0.8575 0.8575 0.5145 621.646 1554.1366)" class="st1" width="0.3" height="0"/><g><polygon class="st1" points="1501.9,268.9 1511.5,229.9 1396.8,229.9 1404.2,199.7 1525.2,199.7 1535.9,156 1367.8,156 1321.5,344.4 1492.4,344.4 1503.6,299.1 1379.8,299.1 1387.2,268.9"/><polygon class="st1" points="1299.4,156 1265.7,292.8 1265.3,292.8 1210.4,156 1137.4,156 1091.1,344.4 1138.2,344.4 1171.8,207.5 1172.3,207.5 1227.2,344.4 1300.2,344.4 1346.5,156"/><polygon class="st1" points="1115.6,156 935.9,156 924.4,202.8 990.7,202.8 955.9,344.4 1003,344.4 1037.8,202.8 1104.1,202.8"/><polygon class="st1" points="738.7,202.8 805,202.8 770.2,344.4 817.3,344.4 852.1,202.8 904.1,202.8 915.6,156 750.3,156"/><path class="st1" d="M631.5,156L501.9,344.4h52.7l22-33.3h95.5l6.4,33.3h52.4L692.9,156H631.5z M604.2,270.5l47.1-70.7l13.2,70.7H604.2z"/><polygon class="st1" points="389.8,296 424.3,156 377.1,156 330.8,344.4 483.9,344.4 495.8,296"/><path class="st1" d="M301.7,249.4l0.2-0.8c14.3-4.7,25.4-10.9,33.4-43.2c9.1-36.9-6.1-49.4-43.7-49.4H155.8l-46.3,188.3h150.1c27,0,49-8.6,59.2-50C325.8,266,321.5,252.5,301.7,249.4z M272.7,285.3c-2.7,10.9-10.2,13.8-20.4,13.8h-84.5l7.2-29.4h84.5C269.7,269.7,275.8,272.5,272.7,285.3z M285.4,216.1c-2.6,10.6-8.7,14.6-17.4,14.6h-83.4l7.2-29.4h83.4C284,201.3,288.1,205.2,285.4,216.1z"/><polygon class="st1" points="1682.9,228.1 1683.2,228.3 1683.3,227.9"/><path class="st1" d="M1678.1,240.7l-0.2-0.1l0.2,0.2C1678,240.8,1678,240.7,1678.1,240.7z"/><path class="st1" d="M1692.4,270.7L1692.4,270.7L1692.4,270.7L1692.4,270.7L1692.4,270.7L1692.4,270.7l-20.7-24.4c-3,1.5-6.5,2.4-10.8,2.4h-77.9l11.2-45.8h40.7l-39.7-46.8h-36.6l-46.3,188.3h47.1l12-48.9h74.1c14.7,0,17.7,6.5,12.9,26.2l-5.6,22.6h47.1l7.9-32c2.1-8.4,2.8-15.1,2.6-20.4L1692.4,270.7L1692.4,270.7z"/><polygon class="st1" points="1676.1,156 1636.1,156 1658,201.5"/><path class="st1" d="M1678,240.8l22.5,26.6c8.6-3.7,14.7-9.1,19.3-16.4l-41.8-10.3C1678,240.7,1678,240.8,1678,240.8z"/><path class="st1" d="M1726.8,162.8l-41.6,46.6l-4.7,5.3l5.3-0.2l46.9-1.7l-49.3,15.1l-0.1,0.3l36.6,22.7c4.5-7.2,7.6-16.1,10.3-27.1l3-12C1738.7,189.2,1738.5,171.8,1726.8,162.8z"/><polygon class="st1" points="1636.1,156 1606.1,156 1644.3,201.1"/><path class="st1" d="M1671.2,204.8l2.3-1.7l53.3-40.3c-5.7-4.4-14.1-6.7-25.9-6.7h-24.7l-4.7,46.9L1671.2,204.8z"/></g></g><polygon class="st1" points="1562.5,104 1593.6,140.7 1761.5,140.8 1732,303.2 1768.7,345.6 1810.3,104.4"/></g></g></svg>
+  </div>
+  <div class="header-title">Process Improvement<br>Quick Reference</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Excel Formula Bar Symbols</h1>
+  <p>Eight characters that change how Excel reads what you type. Click any card to see usage examples and tips. Filter by category using the buttons below.</p>
+  <a class="hero-link" href="https://youtu.be/HLoEOKt_AcE?si=YFL8d3jLMoWCw3EL" target="_blank">&#9654; Watch Reference Video</a>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterCards('all', this)">All (8)</button>
+    <button class="filter-btn" onclick="filterCards('reference', this)">Cell Reference</button>
+    <button class="filter-btn" onclick="filterCards('text', this)">Text &amp; Format</button>
+    <button class="filter-btn" onclick="filterCards('wildcard', this)">Wildcards</button>
+    <button class="filter-btn" onclick="filterCards('operator', this)">Operators</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="symbol-grid" id="symbolGrid">
+
+    <!-- 1. PERIOD -->
+    <div class="card" data-category="reference" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="symbol-badge">.</div>
+        <div class="card-meta">
+          <div class="card-num">Symbol 1</div>
+          <div class="card-name">Period / Dot</div>
+          <span class="card-tag">Cell Reference</span>
+        </div>
+      </div>
+      <div class="card-summary">
+        Used inside a range reference to separate the start cell from the end cell when using certain structured range notations. More commonly, the period is the decimal separator in numbers.
+      </div>
+      <div class="card-detail">
+        <div class="detail-section-label">Primary Use — Decimal Separator</div>
+        <div class="example-box">=A1*3.14</div>
+        <div class="example-result">Multiplies A1 by pi (3.14)</div>
+        <div class="detail-section-label">Range Notation (R1C1 / structured)</div>
+        <div class="example-box">=SUM(R1C1:R5C1)</div>
+        <div class="example-result">In R1C1 notation, dot variants appear in some locale-specific range formats</div>
+        <div class="detail-note">In U.S. locale Excel, the dot is the decimal point in every numeric literal. It does not separate range addresses in standard A1 notation — that job belongs to the colon (:).</div>
+      </div>
+      <div class="expand-hint">Click to expand &#9660;</div>
+    </div>
+
+    <!-- 2. APOSTROPHE -->
+    <div class="card" data-category="text" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="symbol-badge">'</div>
+        <div class="card-meta">
+          <div class="card-num">Symbol 2</div>
+          <div class="card-name">Apostrophe</div>
+          <span class="card-tag">Text &amp; Format</span>
+        </div>
+      </div>
+      <div class="card-summary">
+        Forces Excel to treat a cell entry as text, not a number or formula. Type it first and Excel stores the value as a text string — even if it looks like a number.
+      </div>
+      <div class="card-detail">
+        <div class="detail-section-label">Force Text Entry</div>
+        <div class="example-box">'001234</div>
+        <div class="example-result">Stored as text "001234" — leading zeros preserved</div>
+        <div class="example-box">'=SUM(A1:A5)</div>
+        <div class="example-result">Displayed literally as =SUM(A1:A5), not calculated</div>
+        <div class="detail-section-label">Sheet Name in References</div>
+        <div class="example-box">='Sheet Name With Spaces'!A1</div>
+        <div class="example-result">Apostrophes wrap sheet names that contain spaces or special characters</div>
+        <div class="detail-note">The leading apostrophe is invisible in the cell display but visible in the formula bar. It shows as a small green triangle warning in the corner of the cell.</div>
+      </div>
+      <div class="expand-hint">Click to expand &#9660;</div>
+    </div>
+
+    <!-- 3. SPACE -->
+    <div class="card" data-category="operator" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="symbol-badge" style="font-size:14px; font-weight:700; color:#76777B; letter-spacing:0; font-family:Arial,sans-serif;">SPACE</div>
+        <div class="card-meta">
+          <div class="card-num">Symbol 3</div>
+          <div class="card-name">Space (Intersect)</div>
+          <span class="card-tag">Operator</span>
+        </div>
+      </div>
+      <div class="card-summary">
+        A single space between two range references is the intersection operator. It returns the cell(s) that two ranges share. It's the quietest operator in Excel — easy to miss, easy to mistype.
+      </div>
+      <div class="card-detail">
+        <div class="detail-section-label">Intersection Operator</div>
+        <div class="example-box">=B1:B10 A5:D5</div>
+        <div class="example-result">Returns the value at B5 — the cell where those two ranges cross</div>
+        <div class="example-box">=SUM(A1:A10 A3:A7)</div>
+        <div class="example-result">Sums only A3:A7 — the overlapping portion</div>
+        <div class="detail-note">If the two ranges don't intersect, Excel returns a #NULL! error. This is one of the rare cases where a "typo" (forgetting a comma between ranges) actually does something — just not what you intended.</div>
+      </div>
+      <div class="expand-hint">Click to expand &#9660;</div>
+    </div>
+
+    <!-- 4. ASTERISK -->
+    <div class="card" data-category="wildcard" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="symbol-badge">*</div>
+        <div class="card-meta">
+          <div class="card-num">Symbol 4</div>
+          <div class="card-name">Asterisk</div>
+          <span class="card-tag">Wildcard</span>
+        </div>
+      </div>
+      <div class="card-summary">
+        Two jobs: wildcard for any number of characters in text-matching functions, and the multiplication operator in math formulas.
+      </div>
+      <div class="card-detail">
+        <div class="detail-section-label">Multiplication Operator</div>
+        <div class="example-box">=A1*B1</div>
+        <div class="example-result">Multiplies values in A1 and B1</div>
+        <div class="detail-section-label">Wildcard — Any Number of Characters</div>
+        <div class="example-box">=COUNTIF(A:A,"Blattner*")</div>
+        <div class="example-result">Counts cells starting with "Blattner" (anything after)</div>
+        <div class="example-box">=SUMIF(A:A,"*solar*",B:B)</div>
+        <div class="example-result">Sums column B where column A contains "solar" anywhere in the text</div>
+        <div class="detail-note">Works in COUNTIF, SUMIF, VLOOKUP, MATCH, and similar functions. Does NOT work as a wildcard inside SUM or IF on its own — only in functions that explicitly support wildcards.</div>
+      </div>
+      <div class="expand-hint">Click to expand &#9660;</div>
+    </div>
+
+    <!-- 5. QUESTION MARK -->
+    <div class="card" data-category="wildcard" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="symbol-badge">?</div>
+        <div class="card-meta">
+          <div class="card-num">Symbol 5</div>
+          <div class="card-name">Question Mark</div>
+          <span class="card-tag">Wildcard</span>
+        </div>
+      </div>
+      <div class="card-summary">
+        Wildcard for exactly one character. Use it when you know the length of the text but not what a specific character is.
+      </div>
+      <div class="card-detail">
+        <div class="detail-section-label">Single-Character Wildcard</div>
+        <div class="example-box">=COUNTIF(A:A,"S?N")</div>
+        <div class="example-result">Matches "SUN", "SAN", "SON", "SIN" — exactly 3 characters, S at start, N at end</div>
+        <div class="example-box">=VLOOKUP("J?n",A:B,2,0)</div>
+        <div class="example-result">Matches "Jan", "Jun", "Jon", etc.</div>
+        <div class="detail-section-label">Combining with Asterisk</div>
+        <div class="example-box">=COUNTIF(A:A,"B????ner*")</div>
+        <div class="example-result">Matches "Blattner", "Blattner Company", etc. — 4 unknown chars after B, then "ner"</div>
+        <div class="detail-note">The ? counts as exactly one position. Stack them to match a fixed-length unknown sequence. Combine with * when the tail is variable.</div>
+      </div>
+      <div class="expand-hint">Click to expand &#9660;</div>
+    </div>
+
+    <!-- 6. TILDE -->
+    <div class="card" data-category="wildcard" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="symbol-badge">~</div>
+        <div class="card-meta">
+          <div class="card-num">Symbol 6</div>
+          <div class="card-name">Tilde</div>
+          <span class="card-tag">Wildcard</span>
+        </div>
+      </div>
+      <div class="card-summary">
+        Escape character for wildcards. Put a tilde before * or ? to search for the literal character instead of treating it as a wildcard. Think of it as "I mean this literally."
+      </div>
+      <div class="card-detail">
+        <div class="detail-section-label">Escape a Wildcard</div>
+        <div class="example-box">=COUNTIF(A:A,"Price~*")</div>
+        <div class="example-result">Counts cells containing the literal text "Price*" — not "Price" followed by anything</div>
+        <div class="example-box">=MATCH("5~?",A:A,0)</div>
+        <div class="example-result">Looks for the literal string "5?" in column A</div>
+        <div class="detail-section-label">Escape the Tilde Itself</div>
+        <div class="example-box">=COUNTIF(A:A,"~~")</div>
+        <div class="example-result">Counts cells containing a literal tilde character</div>
+        <div class="detail-note">Without the tilde escape, you cannot search for actual asterisks or question marks using wildcard-based functions. This trips up a lot of people dealing with part numbers or coded strings.</div>
+      </div>
+      <div class="expand-hint">Click to expand &#9660;</div>
+    </div>
+
+    <!-- 7. DOLLAR SIGN -->
+    <div class="card" data-category="reference" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="symbol-badge">$</div>
+        <div class="card-meta">
+          <div class="card-num">Symbol 7</div>
+          <div class="card-name">Dollar Sign</div>
+          <span class="card-tag">Cell Reference</span>
+        </div>
+      </div>
+      <div class="card-summary">
+        Locks a row, column, or both when copying formulas. Without it, references shift as you copy. With it, they stay put. The anchor that keeps your formula from drifting.
+      </div>
+      <div class="card-detail">
+        <div class="detail-section-label">Absolute Column and Row</div>
+        <div class="example-box">=$A$1</div>
+        <div class="example-result">Always refers to A1 no matter where the formula is copied</div>
+        <div class="detail-section-label">Mixed References</div>
+        <div class="example-box">=$A1</div>
+        <div class="example-result">Column A locked, row shifts as formula is copied down</div>
+        <div class="example-box">=A$1</div>
+        <div class="example-result">Row 1 locked, column shifts as formula is copied right</div>
+        <div class="detail-section-label">Shortcut</div>
+        <div class="detail-note">Press <strong>F4</strong> while the cursor is on a cell reference in the formula bar to cycle through all four reference types: A1 → $A$1 → A$1 → $A1 → back to A1.</div>
+      </div>
+      <div class="expand-hint">Click to expand &#9660;</div>
+    </div>
+
+    <!-- 8. AMPERSAND -->
+    <div class="card" data-category="text" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="symbol-badge">&amp;</div>
+        <div class="card-meta">
+          <div class="card-num">Symbol 8</div>
+          <div class="card-name">Ampersand</div>
+          <span class="card-tag">Text &amp; Format</span>
+        </div>
+      </div>
+      <div class="card-summary">
+        Text concatenation operator. Joins two or more strings or cell values into one. The "glue" of Excel formulas.
+      </div>
+      <div class="card-detail">
+        <div class="detail-section-label">Join Text and Cell Values</div>
+        <div class="example-box">=A1&amp;" "&amp;B1</div>
+        <div class="example-result">Combines first name (A1), a space, and last name (B1) into one string</div>
+        <div class="example-box">="Project: "&amp;C3</div>
+        <div class="example-result">Returns "Project: " followed by whatever is in C3</div>
+        <div class="detail-section-label">With Other Functions</div>
+        <div class="example-box">=TEXT(A1,"MM/DD/YYYY")&amp;" Report"</div>
+        <div class="example-result">Formats a date and appends " Report" to it</div>
+        <div class="example-box">=VLOOKUP(D1&amp;E1,A:C,3,0)</div>
+        <div class="example-result">Concatenates D1 and E1 to build a lookup key on the fly</div>
+        <div class="detail-note">The ampersand is functionally identical to CONCAT() or CONCATENATE(), but faster to type. Use TEXT() around numbers or dates before concatenating if you want specific formatting preserved.</div>
+      </div>
+      <div class="expand-hint">Click to expand &#9660;</div>
+    </div>
+
+  </div><!-- end grid -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  &copy; Blattner Company &nbsp;|&nbsp; Process Improvement &nbsp;|&nbsp;
+  <a href="https://youtu.be/HLoEOKt_AcE?si=YFL8d3jLMoWCw3EL" target="_blank">Video Reference</a>
+</footer>
+
+<script>
+  function toggleCard(card) {
+    const isExpanded = card.classList.contains('expanded');
+    // Collapse all
+    document.querySelectorAll('.card').forEach(c => {
+      c.classList.remove('expanded');
+      const hint = c.querySelector('.expand-hint');
+      if (hint) hint.innerHTML = 'Click to expand &#9660;';
+    });
+    // Expand clicked if it wasn't already open
+    if (!isExpanded) {
+      card.classList.add('expanded');
+      const hint = card.querySelector('.expand-hint');
+      if (hint) hint.innerHTML = 'Click to collapse &#9650;';
+    }
+  }
+
+  function filterCards(category, btn) {
+    // Update button states
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Show/hide cards
+    document.querySelectorAll('.card').forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+        card.classList.remove('expanded');
+        const hint = card.querySelector('.expand-hint');
+        if (hint) hint.innerHTML = 'Click to expand &#9660;';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
